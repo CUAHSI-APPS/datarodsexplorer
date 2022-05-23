@@ -237,7 +237,9 @@ def parse_fences_from_file():
     model_fences = {}
 
     fencefile = path.join(path.dirname(path.realpath(__file__)), 'public/data/dates_and_spatial_range.txt')
-
+    logfile = path.join(path.dirname(path.realpath(__file__)), 'public/data/hart_debugging_temp.txt')
+    with open(logfile, mode='w') as f:
+        print('This message will be written to a file.', file=f)
     with open(fencefile, mode='r') as f:
         f.readline()  # skip column headings line
         for line in f.readlines():
@@ -271,7 +273,7 @@ def parse_fences_from_file():
 def parse_model_database_from_file():
     # Attempt to parse model_config.txt from GitHub repo master branch
     db_file_url = ('https://raw.githubusercontent.com/CUAHSI-APPS/datarodsexplorer/master/tethysapp/'
-                    'data_rods_explorer/public/data/model_config.txt')
+                   'data_rods_explorer/public/data/model_config.txt')
 
     f = get(db_file_url)
     if f.status_code == 200:

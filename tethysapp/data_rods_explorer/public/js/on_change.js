@@ -3,11 +3,13 @@ function oc_model() {
     var NLDASFlashMessageText = 'NLDAS does not support the "Display Map" function, ' +
         'but data rods data can still be obtained under the "Plot one variable", "Compare two variables", ' +
         'or "Year-on-year changes" options.';
+    var FailedToLoadResourceText="This resource failed to load from NASA."
+    var pointOutBoundsFlashMessageID = 'point-out-bounds';
+
     var href;
     var GET = getUrlVars();
     var model = $('#model1').val();
     var btnDisplayMap = $('#btnDisplayMap');
-
     // All datepickers (plotTime, startDate`, endDate), the model and variable are affected by this change event. Everything else stays the same.
     updateFences('1', model); // The "1" refers to "Model 1". Thus Model 1's fences will be updated.
     GET['model'] = model;
@@ -26,13 +28,18 @@ function oc_model() {
     history.pushState("", "", href);
     loadVariableOptions('model', 'variable');
     validateClickPoint();
-
     if (model.includes('NLDAS')) {
         btnDisplayMap.prop('disabled', true);
         displayFlashMessage(NLDASFlashMessageID, 'info', NLDASFlashMessageText)
-    } else {
-        btnDisplayMap.prop('disabled', false);
+    }
+    else{
         removeFlashMessage(NLDASFlashMessageID)
+    }
+    if(GET['plotTime'].toString()==="1800-01-01T00"){
+        displayFlashMessage(pointOutBoundsFlashMessageID, 'warning', FailedToLoadResourceText)
+    }
+    else {
+        removeFlashMessage(pointOutBoundsFlashMessageID)
     }
 }
 

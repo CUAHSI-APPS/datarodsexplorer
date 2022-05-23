@@ -4,7 +4,7 @@ from sys import path as syspath
 
 syspath.append('/usr/local/lib/python2.7/site-packages')  # This is so bs4 and requests will be found #?
 from requests import get
-from bs4 import BeautifulSoup  # ?
+from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 
 
@@ -75,7 +75,7 @@ def write_fences_file(model_list):
 
         for model in model_list:
             middleman_url1 = url_pattern.format(model['short_name'], model['version'], 'start_date')
-            print(middleman_url1)
+            #print(middleman_url1)
             middleman_url2 = url_pattern.format(model['short_name'], model['version'], '-start_date')
             url1 = get_url2(middleman_url1)
             url2 = get_url2(middleman_url2)
@@ -84,8 +84,9 @@ def write_fences_file(model_list):
                 end_time = convert_datetime(get_endtime(url2))
                 bounds = get_bounds(url2)
             except:
+                print(middleman_url1)
                 print(model["key"] + " failed to get dates and spatial range.")
-                f.write(model_output_pattern.format(model['key'], "", "", ""))
+                f.write(model_output_pattern.format(model['key'], "01/01/1800 ", "01/02/1800 ", "0, 0, 0, 0"))
                 continue
 
             if model['key'] == 'GLDAS':
