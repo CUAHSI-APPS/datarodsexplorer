@@ -1,5 +1,7 @@
 # coding=utf-8
-import urllib.request, urllib.error, urllib.parse
+import urllib.request
+import urllib.error
+import urllib.parse
 from datetime import datetime
 from dateutil import parser as dateparser
 from .model_objects import get_wms_vars, get_datarods_tsb, \
@@ -24,7 +26,8 @@ def create_select_model(modelname):
                                initial=[selected_model if selected_model else None],
                                original=True,
                                options=get_model_options(),
-                               attributes="onchange=oc_model();"
+                               attributes="onchange=oc_model();",
+                               classes="w-100 mb-3 form-control"
                                )
     return select_model
 
@@ -57,7 +60,7 @@ def create_map():
         controls=['ZoomSlider'],
         layers=[],
         view=view_options,
-        basemap='OpenStreetMap',
+        basemap=['OpenStreetMap'],
         draw=draw_options,
         legend=True,
         disable_basemap=False,
@@ -80,7 +83,7 @@ def create_map_date_ctrls(model):
                              end_date=get_model_fences()[model]['end_date'],
                              start_view=0,
                              attributes='onchange=oc_map_dt();',
-                             classes=''
+                             classes='mb-3'
                              )
 
     select_hour = SelectInput(display_text='',
@@ -95,7 +98,7 @@ def create_map_date_ctrls(model):
                                        ('20:00', '20'), ('21:00', '21'), ('22:00', '22'), ('23:00', '23')],
                               initial=['00:00'],
                               attributes='onchange=oc_map_dt();',
-                              classes=''
+                              classes='form-control'
                               )
 
     return [select_date, select_hour]
@@ -202,8 +205,7 @@ def get_data_from_nasa_server(link, overlap_years=False):
             date = '2000' + row_ls[0][4:] if overlap_years else row_ls[0]
             val = row_ls[1]
             date_val_pair = [dateparser.parse(date), float(val)]
-        except Exception as e:
-            print(str(e))
+        except Exception:
             continue
         data.append(date_val_pair)
 

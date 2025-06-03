@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from tethys_sdk.gizmos import SelectInput, Button, TimeSeries, MapView
+from tethys_sdk.routing import controller
 from .model_objects import get_wms_vars, get_datarods_png, get_datarods_tsb, \
     get_model_fences, get_model_options, get_var_dict, init_model, TiffLayerManager
 from .utilities import create_map, create_select_model, create_plot_ctrls, create_map_date_ctrls, \
     create_years_list, get_data_rod_plot, get_data_rod_plot2, get_data_rod_years
 from json import dumps
+from tethys_sdk.routing import controller
 
 
+@controller(name='home', url='data-rods-explorer')
 def home(request):
     """
     Controller for the app 'home' page.
@@ -30,7 +33,8 @@ def home(request):
                                 multiple=False,
                                 original=True,
                                 options=get_model_options(),
-                                attributes="onchange=oc_model2();"
+                                attributes="onchange=oc_model2();",
+                                classes="w-100 mb-3 form-control"
                                 )
 
     years_list = create_years_list(1979)
@@ -40,6 +44,7 @@ def home(request):
                                original=False,
                                options=years_list,
                                attributes="onchange=oc_years();"
+                               
                                )
 
     plot_button3 = Button(display_text='Plot',
@@ -50,7 +55,7 @@ def home(request):
                           submit=False,
                           disabled=False,
                           attributes='onclick=createPlot(this.name);',
-                          classes='btn-plot')
+                          classes='btn-plot mb-3')
 
     # Context variables
     context = {
@@ -77,15 +82,16 @@ def home(request):
 
     return render(request, 'data_rods_explorer/app_base_dre.html', context)
 
-
+@controller(name='map', url='data-rods-explorer/request-map-layer')
 def request_map_layer(request):
     context = {
         'success': False
     }
-    if request.is_ajax() and request.method == 'POST':
+    if request.headers.get("x-requested-with") == "XMLHttpRequest" and request.method == 'POST':
         post_params = request.POST
         instance_id = post_params['instance_id']
         tif_layer_manager = TiffLayerManager.get_instance(instance_id)
+
         if tif_layer_manager:
             if tif_layer_manager.requested:
                 if tif_layer_manager.loaded:
@@ -96,16 +102,21 @@ def request_map_layer(request):
                     }
                     tif_layer_manager.trash()
                 elif tif_layer_manager.error:
+                    print('request map layer error')
                     context['error'] = tif_layer_manager.error
                     tif_layer_manager.trash()
         else:
             # If 'Display map' is clicked, load layers
             tif_layer_manager = TiffLayerManager.create_instance(instance_id)
             tif_layer_manager.request_tiff_layer(post_params)
-            context['success'] = True
+            if tif_layer_manager.error is not None:
+                context['success'] = False
+                context['error'] = tif_layer_manager.error
+            else:
+                context['success'] = True
     return JsonResponse(context)
 
-
+@controller(name='plot', url='data-rods-explorer/plot')
 def plot(request):
     """
     Controller for the plot page.
@@ -150,7 +161,7 @@ def plot(request):
 
     return render(request, 'data_rods_explorer/plot.html', context)
 
-
+@controller(name='plot2', url='data-rods-explorer/plot2')
 def plot2(request):
     """
     Controller for the plot2 page.
@@ -173,7 +184,7 @@ def plot2(request):
 
         return render(request, 'data_rods_explorer/plot.html', context)
 
-
+@controller(name='years', url='data-rods-explorer/years')
 def years(request):
     """
     Controller for the 'years' page.

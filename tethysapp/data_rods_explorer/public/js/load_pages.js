@@ -1,7 +1,7 @@
 function onClickLink(link, navItem) {
     if ($(link).hasClass('open')) {
         $(link).removeClass('open');
-        $('#nav-' + navItem).addClass('hidden');
+        $('#nav-' + navItem).addClass('d-none');
 
         if (navItem == 'plot2') {
             removeFlashMessage('bound-adjusted');
@@ -12,8 +12,8 @@ function onClickLink(link, navItem) {
     } else {
         $('.nav-link').removeClass('open');
         $(link).addClass('open');
-        $('.nav-item').addClass('hidden');
-        $('#nav-' + navItem).removeClass('hidden');
+        $('.plot-form').addClass('d-none');
+        $('#nav-' + navItem).removeClass('d-none');
 
         loadNavOptionsAndParams(navItem);
 
@@ -182,6 +182,7 @@ function loadDefaultHome() {
     if (navItem) {
         onClickLink($('#nav-' + navItem).prev().children()[0], navItem);
     }
+    oc_model()
 }
 
 function loadDefaultsForPlotNav(data) {

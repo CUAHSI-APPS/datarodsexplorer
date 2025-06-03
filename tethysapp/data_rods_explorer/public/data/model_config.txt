@@ -1,16 +1,6 @@
 Model_Display_Name~Model_Key_Name~Official_Model_Short_Name~Model_Version~Model_Data_Url_Pattern
 Model_Key|Data_Rods_Variable_ID|WMS_Layer_Name|Variable_Dropdown_Name|Units|Variable_Layer_Name
 
-NLDAS-Forcing (LSM)~NLDASF~NLDAS_FORA0125_H~002~https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi?variable=NLDAS:NLDAS_FORA0125_H.002:{0}&type=asc2&location=GEOM:POINT({1})&startDate={2}&endDate={3}
-NLDASF|APCPsfc|NLDAS_FORA0125_H_002_apcpsfc|Precipitation hourly|kg/m^2|NLDASF:PrecipHourly
-NLDASF|DLWRFsfc|NLDAS_FORA0125_H_002_dlwrfsfc|Surface DW longwave radiation flux|W/m^2|NLDASF:SurfDWLongWaveRadFlux
-NLDASF|DSWRFsfc|NLDAS_FORA0125_H_002_dswrfsfc|Surface DW shortwave radiation flux|W/m^2|NLDASF:SurfDWShrtWaveRadFlux
-NLDASF|PEVAPsfc|NLDAS_FORA0125_H_002_pevapsfc|Potential evaporation|kg/m^2|NLDASF:PotentialEvaporation
-NLDASF|SPFH2m|NLDAS_FORA0125_H_002_spfh2m|2-m above ground specific humidity|kg/kg|NLDASF:2mAbvGrndSpecifHumid
-NLDASF|TMP2m|NLDAS_FORA0125_H_002_tmp2m|2-m above ground temperature|K|NLDASF:2mAbvGrndTemp
-NLDASF|UGRD10m|NLDAS_FORA0125_H_002_ugrd10m|10-m above ground zonal wind|m/s|NLDASF:10mAbvGrndZonalWind
-NLDASF|VGRD10m|NLDAS_FORA0125_H_002_vgrd10m|10-m above ground meridional wind|m/s|NLDASF:10mAbvGrndMeridWind
-
 NLDAS 2.0-Forcing (LSM)~NLDAS2F~NLDAS_FORA0125_H~002~https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi?variable=NLDAS2:NLDAS_FORA0125_H_v2.0:{0}&type=asc2&location=GEOM:POINT({1})&startDate={2}&endDate={3}
 NLDAS2F|Rainf|NLDAS_FORA0125_H_v2.0_Rainf|Total precipitation|kg/m^2|NLDAS2F:TotalPrecip
 NLDAS2F|LWdown|NLDAS_FORA0125_H_v2.0_LWdown|LW down radiation flux|w/m^2|NLDAS2F:LWFluxDown

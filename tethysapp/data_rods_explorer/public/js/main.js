@@ -1,4 +1,5 @@
 $(function() {
+    
     var map;
 
     $('.app-title').css({'width': '480px'});

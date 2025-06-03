@@ -3,9 +3,8 @@
 {% else %}
     {% load tethys_gizmos %}
     <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="dropdown-viewData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button class="btn dropdown-toggle" type="button" id="dropdown-viewData" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             View Raw Data from NASA in New Tab...
-            <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdown-export">
             <li class="option-viewData" id="optn-viewDataAscii" onclick="openDataRodsUrls({{ datarods_urls_dict.asc2 }})">
@@ -42,7 +41,7 @@
              data-series="{{ timeseries_plot.series }}"
              data-y1units="{{ timeseries_plot.y1_axis_units }}"
              data-y2units="{{ timeseries_plot.y2_axis_units }}"
-             class="hidden"></div>
+             class="d-none"></div>
     {% else %}
         {% gizmo plot_view timeseries_plot %}
     {% endif %}

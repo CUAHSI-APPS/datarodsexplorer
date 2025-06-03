@@ -1,11 +1,10 @@
 #map-loading {
     position: absolute;
-    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
     opacity: 0.5;
+    z-index:1100;
 }
 
 #map-loading img {
@@ -13,14 +12,12 @@
 }
 
 #plot-loading {
-    position: absolute;
     right: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1200;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
     opacity: 0.5;
     height: 250px;
 }
@@ -31,6 +28,27 @@
     justify-content: center;
     align-items: center;
 }
+
+#app-content-wrapper.show-nav .flash-messages .alert {
+    margin-right: 300px;
+}
+
+.flash-messages {
+    z-index: 1100;
+    top: 50px;
+}
+
+.flash-messages .alert {
+    width: auto;
+}
+
+
+
+.ol-viewport {
+    position:relative;
+    margin-top: 50px;
+}
+
 
 .option-viewData, .option-uploadToHS {
     background: #5971A8;
@@ -45,6 +63,24 @@
     color: black;
     cursor: pointer;
     border: 1px solid black;
+}
+
+#app-content-wrapper.show-nav .flash-messages .alert {
+    margin-right: 300px;
+}
+
+.flash-messages {
+    z-index: 1100;
+    top: 50px;
+}
+
+.flash-messages .alert {
+    width: auto;
+}
+
+.ol-viewport {
+    position:relative;
+        top: 50px;
 }
 
 .alert {
@@ -88,4 +124,22 @@
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
+    overflow: auto;
+}
+
+.form-control {
+    width:100%;
+}
+
+.btn-plot {
+    margin-top:10px;
+}
+
+.dropdown-menu {
+    z-index:1300;
+}
+
+.dropdown {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

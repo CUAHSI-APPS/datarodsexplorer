@@ -33,13 +33,16 @@ function oc_model() {
 
     if (model.includes('NLDAS')) {
         btnDisplayMap.prop('disabled', true);
+        removeFlashMessage(SMERGEFlashMessageID);
         displayFlashMessage(NLDASFlashMessageID, 'info', NLDASFlashMessageText)
     } else if (model.includes('SMERGE')) {
         btnDisplayMap.prop('disabled', true);
+        removeFlashMessage(NLDASFlashMessageID);
         displayFlashMessage(SMERGEFlashMessageID, 'info', SMERGEFlashMessageText)
     } else {
         btnDisplayMap.prop('disabled', false);
-        removeFlashMessage(NLDASFlashMessageID)
+        removeFlashMessage(NLDASFlashMessageID);
+        removeFlashMessage(SMERGEFlashMessageID);
     }
 }
 
