@@ -1,7 +1,7 @@
 Model_Display_Name~Model_Key_Name~Official_Model_Short_Name~Model_Version~Model_Data_Url_Pattern
 Model_Key|Data_Rods_Variable_ID|WMS_Layer_Name|Variable_Dropdown_Name|Units|Variable_Layer_Name
 
-NLDAS 2.0-Forcing (LSM)~NLDAS2F~NLDAS_FORA0125_H~002~https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi?variable=NLDAS2:NLDAS_FORA0125_H_v2.0:{0}&type=asc2&location=GEOM:POINT({1})&startDate={2}&endDate={3}
+NLDAS 2.0-Forcing (LSM)~NLDAS2F~NLDAS_FORA0125_H~2.0~https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi?variable=NLDAS2:NLDAS_FORA0125_H_v2.0:{0}&type=asc2&location=GEOM:POINT({1})&startDate={2}&endDate={3}
 NLDAS2F|Rainf|NLDAS_FORA0125_H_v2.0_Rainf|Total precipitation|kg/m^2|NLDAS2F:TotalPrecip
 NLDAS2F|LWdown|NLDAS_FORA0125_H_v2.0_LWdown|LW down radiation flux|w/m^2|NLDAS2F:LWFluxDown
 NLDAS2F|SWdown|NLDAS_FORA0125_H_v2.0_SWdown|LW down radiation flux|w/m^2|NLDAS2F:SWFluxDown
