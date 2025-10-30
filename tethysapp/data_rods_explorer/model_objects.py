@@ -352,7 +352,8 @@ def parse_model_database_from_file():
             var_dict[model_key].append({
                 "text": "%s %s" % (linevals[3], linevals[4]),
                 "value": linevals[1],
-                "layerName": linevals[5]
+                "layerName": linevals[5],
+                "variable": linevals[2]
             })
     # print(wms_vars)
     return model_options, var_dict, wms_vars, datarods_tsb

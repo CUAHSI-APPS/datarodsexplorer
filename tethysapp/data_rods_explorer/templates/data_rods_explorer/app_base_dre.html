@@ -87,16 +87,15 @@
         {% block flash %} {% endblock %}
         {% block app_content_override %}
             <div id="app-content">
-                
-                    <div class="flash-messages">
-                        <div id="query-point-info" class="alert alert-info alert-dismissible" role="alert">
-                            <b><span class="bi bi-info-circle" aria-hidden="true"></span>
-                                Click on the map to define data query location, or enter a coordinate:
-                                <input type="number" min="-180" max="180" id="lon" placeholder="Longitude" style="width: 100px">
-                                <input type="number" min="-90" max="90" id="lat" placeholder="Latitude" style="width: 100px">
-                                <button type="button" id="btn-addPoint">Go</button>
-                            </b></div>
-                    </div>
+                <div id="top-info-container">
+                    <div id="query-point-info" class="alert alert-info alert-dismissible" role="alert">
+                        <b><span class="bi bi-info-circle" aria-hidden="true"></span>
+                            Click on the map to define data query location, or enter a coordinate:
+                            <input type="number" min="-180" max="180" id="lon" placeholder="Longitude" style="width: 100px">
+                            <input type="number" min="-90" max="90" id="lat" placeholder="Latitude" style="width: 100px">
+                            <button type="button" id="btn-addPoint">Go</button>
+                        </b></div>
+                </div>
                 
 
                 {% block app_navigation_override %}
@@ -125,7 +124,7 @@
                                             <input name="centerX" id="centerX" value=-96.5 hidden >
                                             <input name="centerY" id="centerY" value=38.5 hidden >
                                             <input name="pointLonLat" id="pointLonLat" value=-9999 hidden ><!-- Add hidden end-->
-                                            <button id="btnDisplayMap" type="button" class="btn btn-light border border-secondary text-dark" onclick="load_map()" disabled="true">Display map</button>
+                                            <button id="btnDisplayMap" type="button" class="btn btn-light border border-secondary text-dark disabled" onclick="load_map()">Display map</button>
                                         </form>
                                     </div>
 
@@ -173,12 +172,11 @@
                         <div id="map-loading" class="d-none">
                             <img src="/static/data_rods_explorer/images/main-loading-anim.gif" />
                         </div>
-                        {% gizmo map_view map_view_options %}
-                        <div style="position: relative;">
+                        {% gizmo map_view_options %}
+                        <div>
                             <div id="plot-loading" class="d-none">
                                 <img src="/static/data_rods_explorer/images/main-loading-anim.gif" />
                             </div>
-                            <br>
                             <div id="plot-container"></div>
                         </div>
                     {% endblock %}

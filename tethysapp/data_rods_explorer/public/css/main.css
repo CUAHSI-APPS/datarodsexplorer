@@ -1,3 +1,6 @@
+#inner-app-content {
+    padding-top: 0 !important;
+}
 #map-loading {
     position: absolute;
     display: flex;
@@ -9,6 +12,12 @@
 
 #map-loading img {
     z-index: 10000;
+}
+
+#map_view_outer_container {
+    margin-top: 105px;
+    height: calc(60% - 105px) !important;
+    position: relative;
 }
 
 #plot-loading {
@@ -27,28 +36,27 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    height: calc(40% - 105px);
 }
 
 #app-content-wrapper.show-nav .flash-messages .alert {
     margin-right: 300px;
 }
 
-.flash-messages {
+#top-info-container {
+    position: absolute;
     z-index: 1100;
-    top: 50px;
+    width: 100%;
 }
 
 .flash-messages .alert {
     width: auto;
 }
 
-
-
-.ol-viewport {
+/* .ol-viewport {
     position:relative;
-    margin-top: 50px;
-}
-
+    /* margin-top: 50px; 
+} */
 
 .option-viewData, .option-uploadToHS {
     background: #5971A8;
@@ -69,19 +77,6 @@
     margin-right: 300px;
 }
 
-.flash-messages {
-    z-index: 1100;
-    top: 50px;
-}
-
-.flash-messages .alert {
-    width: auto;
-}
-
-.ol-viewport {
-    position:relative;
-        top: 50px;
-}
 
 .alert {
     margin-bottom: 0;
@@ -93,7 +88,7 @@
     display: flex;
     align-items: center;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-between !important;
 }
 #png-data-rods {
     flex: 0 1 auto;
@@ -118,13 +113,6 @@
 }
 .highcharts-axis:last-child text {
     transform: matrix3d(0,-1,0.00,0,1.00,0,0.00,0,0,0,1,0,-100,135,0,1);
-}
-#plot-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-    overflow: auto;
 }
 
 .form-control {
