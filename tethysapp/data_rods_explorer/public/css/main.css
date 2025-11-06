@@ -45,12 +45,37 @@
 
 #top-info-container {
     position: absolute;
+    top:50px;
+    left:0;
+    right:0;
     z-index: 1100;
     width: 100%;
+    overflow: visible;
 }
 
-.flash-messages .alert {
-    width: auto;
+#top-info-container .alert {
+    width: 100%;
+    border-radius: 0;
+  /* margin: 10px auto; */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  margin: 0;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.close-button {
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #04424e;
+    border: none;
+    opacity: 0.5;
+    background: none;
+    box-shadow: none;
+    transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
 /* .ol-viewport {

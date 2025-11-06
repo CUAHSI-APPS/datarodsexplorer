@@ -699,19 +699,20 @@ function displayFlashMessage(id, type, message, allowClose, className='') {
     }
 
     if (allowClose) {
-        closeHtml = '<button type="button" class="close" data-bs-dismiss="alert">' +
-            '<span aria-hidden="true">&times;</span>' +
-            '<span class="visually-hidden">Close</span>' +
-            '</button>';
+        closeHtml = `
+            <button type="button" class="close-button" data-bs-dismiss="alert" aria-label="Close">×</button>
+        `;
     }
 
-    $('#top-info-container').append(
-        '<div id="' + id + '" class="alert alert-' + type + ' alert-dismissible ' + className + '" role="alert">' +
-        closeHtml +
-        '<b><span class="bi bi-' + sign + '-circle" aria-hidden="true"></span> ' +
-        message +
-        '</b></div>'
-    );
+    $('#top-info-container').append(`
+        <div id="${id}" class="alert alert-${type} alert-dismissible fade show ${className}" role="alert">
+            ${closeHtml}
+            <b>
+                <span class="bi bi-${sign}-circle me-1" aria-hidden="true"></span>
+                ${message}
+            </b>
+        </div>
+    `);
     $('#app-content-wrapper').scrollTop(0);
 }
 
@@ -1000,7 +1001,7 @@ function updateMapButtonState() {
     }
     else {
         disableMapButton();
-        displayFlashMessage(model1Message.id, 'info', model1Message.text, false, "model-map-flash-message");
+        displayFlashMessage(model1Message.id, 'info', model1Message.text, true, "model-map-flash-message");
         removeFlashMessageByClass("model1-plot-flash-message");
         removeFlashMessageByClass("model2-plot-flash-message");
     }
@@ -1079,7 +1080,7 @@ function updatePlotButtonsState() {
 
         if (messagesData.hasOwnProperty('model1')) {
             let message1 = messagesData['model1'];
-            displayFlashMessage(message1.id, 'info', message1.text, false, 'model1-plot-flash-message');
+            displayFlashMessage(message1.id, 'info', message1.text, true, 'model1-plot-flash-message');
             removeFlashMessageByClass("model-map-flash-message");
         }
 
@@ -1091,7 +1092,7 @@ function updatePlotButtonsState() {
                     return; // Already displayed for model 1
                 }  
             } 
-            displayFlashMessage(message2.id, 'info', message2.text, false, 'model2-plot-flash-message');
+            displayFlashMessage(message2.id, 'info', message2.text, true, 'model2-plot-flash-message');
             removeFlashMessageByClass("model-map-flash-message");
         }
     }

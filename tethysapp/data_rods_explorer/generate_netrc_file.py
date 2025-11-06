@@ -1,6 +1,6 @@
 import os
 from subprocess import Popen
-from getpass import getpass
+from getpass import getuser, getpass
 import stat
 
 from tethysapp.data_rods_explorer.app import DataRodsExplorer as App
@@ -10,7 +10,10 @@ def generate_netrc_file(username, password):
 
     contents = f"machine {urs_url} login {username} password {password}"
 
-    netrc_path = os.path.expanduser("~/.netrc")
+    home_dir = os.path.expanduser(f"~{getuser()}")
+    netrc_path = os.path.join(home_dir, ".netrc")
+
+    App.set_custom_setting("netrc_path", netrc_path)
 
     with open(netrc_path, "w") as f:
         f.write(contents)
