@@ -345,10 +345,18 @@ def generate_datarods_urls_dict(asc2_urls):
     }
 
 def get_earthdata_token():
+    import os
+    import netrc
+    from .app import DataRodsExplorer as App
+
     url = "https://api.giovanni.earthdata.nasa.gov/signin"
-    token = requests.get(url, auth=HTTPBasicAuth(netrc.netrc().hosts["urs.earthdata.nasa.gov"][0],
-                         netrc.netrc().hosts["urs.earthdata.nasa.gov"][2]),
-                         allow_redirects=True).text.replace('"','')
+    netrc_path = App.get_custom_setting("netrc_path")
+    os.environ["NETRC"] = netrc_path
+
+    creds = netrc.netrc(netrc_path).hosts.get("urs.earthdata.nasa.gov")
+    username, _, password = creds
+
+    token = requests.get(url, auth=HTTPBasicAuth(username, password), allow_redirects=True, timeout=30).text.strip().strip('"')
     return token
 
 def format_csv_data(raw_data):
